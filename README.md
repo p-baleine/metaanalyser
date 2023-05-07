@@ -28,6 +28,6 @@ This application is an experiment. The application may exceed the maximum token 
 
 You can find a sample output of this application in the [examples](./examples) directory (the file name is a Google Scholar search query).
 
-- [A Systematic Review of Large Language Model Agent and Tool Integration](examples/llm agent OR llm tool integration.md)
-- [A Systematic Review of Pitman-Yor Language Model](examples/Pitman-Yor Language Model.md)
-- [A Systematic Review of Programming Testing Arxiv](examples/programming testing arxiv.md): I wanted to limit my search to arXiv, so I included "arxiv" in the query, resulting in an unintended title.
+- [A Systematic Review of Large Language Model Agent and Tool Integration](./examples/llm%20agent%20OR%20llm%20tool%20integration.md)
+- [A Systematic Review of Pitman-Yor Language Model](./examples/Pitman-Yor%20Language%20Model.md)
+- [A Systematic Review of Programming Testing Arxiv](./examples/programming%20testing%20arxiv.md): I wanted to limit my search to arXiv, so I included "arxiv" in the query, resulting in an unintended title.
