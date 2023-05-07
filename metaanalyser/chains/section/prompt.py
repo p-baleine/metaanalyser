@@ -24,7 +24,7 @@ This systematic review should adhere to the following overview:
 
 {overview}
 
-Write the "{section_title}" section with respect to this overview. Write the text in markdown format. The title of this section should bu suffixed with {section_level} level markdown title (`{md_title_suffix}`). The text of the section should be based on a snippet or abstact and should be clearly cited. The citation should be written at the end of the sentence in the form `[^cite_id]`."""
+Write the "{section_title}: {section_description}" section with respect to this overview. Write the text in markdown format. The title of this section should bu suffixed with {section_level} level markdown title (`{md_title_suffix}`). The text of the section should be based on a snippet or abstact and should be clearly cited. The citation should be written at the end of the sentence in the form `[^<ID>]` where `ID` refers to the citation_id."""
 human_prompt = HumanMessagePromptTemplate.from_template(human_template)
 
 SECTION_PROMPT = ChatPromptTemplate.from_messages([

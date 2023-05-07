@@ -23,20 +23,24 @@ class Outlint(BaseModel):
     citations_ids: List[int] = Field(description="citation ids to all paper abstracts cited in this paper")
 
     def __str__(self):
-        def section_string(idx: int, section: Section):
+        def section_string(idx: int, section: Section, indent_level: int):
             result = [f"{idx}. {section.title}: {section.description}"]
 
             if not section.children:
                 return result[0]
 
             result += [
-                section_string(f"{idx}.{child_idx}", child)
+                section_string(
+                    ("    " * (indent_level + 1)) + f"{child_idx}",
+                    child,
+                    indent_level + 1
+                )
                 for child_idx, child in enumerate(section.children, start=1)
             ]
             return "\n".join(result)
 
         return "\n".join([
-            section_string(idx, s)
+            section_string(idx, s, 0)
             for idx, s in enumerate(self.sections, start=1)
         ])
 
@@ -60,6 +64,7 @@ The following is an overview of this systematic review. Build the outline of the
 
 Device each section of this outline by citing abstracts from the papers.
 The beginning of element of the sections should by titled "Introduction" and last element of the sections should be titled "Conclusion".
+It is preferred that sections be divided into more child sections. Each section can have up to two child sections.
 
 {format_instructions}"""
 human_prompt = HumanMessagePromptTemplate(

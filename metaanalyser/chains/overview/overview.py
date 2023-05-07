@@ -19,7 +19,7 @@ class SROverviewChain(SRBaseChain):
 
     prompt: BasePromptTemplate = OVERVIEW_PROMPT
     nb_categories: int = 3
-    nb_token_limit: int = 2_000
+    nb_token_limit: int = 1_500
     nb_max_retry: int = 3
 
     @property

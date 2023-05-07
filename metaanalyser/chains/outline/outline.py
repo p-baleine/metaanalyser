@@ -20,7 +20,7 @@ class SROutlintChain(SRBaseChain):
 
     prompt: BasePromptTemplate = OUTLINE_PROMPT
     nb_categories: int = 3
-    nb_token_limit: int = 2_000
+    nb_token_limit: int = 1_500
 
     @property
     def input_keys(self) -> List[str]:
