@@ -34,7 +34,7 @@ with block:
     with gr.Row():
         gr.Markdown("""
         <h2><center>Metaanalyser demo</center></h2>
-        Generate a systematic review for your query based on Google Scholar search results. It will take a few minutes to output the results. See [README](https://github.com/p-baleine/metaanalyser) for details
+        Generate a systematic review for your query based on Google Scholar search results. See [README](https://github.com/p-baleine/metaanalyser) for details
         """)
 
         openai_api_key_textbox = gr.Textbox(
