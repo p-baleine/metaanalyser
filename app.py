@@ -12,7 +12,7 @@ logging.getLogger("metaanalyser").setLevel(level=logging.DEBUG)
 
 
 def run(query: str, chain: SRChain):
-    if "OPENAI_API_KEY" in os.environ or "SERPAPI_API_KEY" not in os.environ:
+    if "OPENAI_API_KEY" not in os.environ or "SERPAPI_API_KEY" not in os.environ:
         raise gr.Error(f"Please paste your OpenAI (https://platform.openai.com/) key and SerpAPI (https://serpapi.com/) key to use.")
 
     llm = ChatOpenAI(temperature=0)
