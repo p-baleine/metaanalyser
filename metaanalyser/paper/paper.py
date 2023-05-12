@@ -177,7 +177,9 @@ def search_on_google_scholar(
 
             return True
 
-        search_result = fetch_google_scholar(query, start)
+        # FIXME: 検索結果に arxiv の文献をなるべく多く含めたいため検索クエリを弄っている
+        actual_query = " ".join([query, "arxiv"]) if "arxiv" not in query.lower() else query
+        search_result = fetch_google_scholar(actual_query, start)
 
         return [i for i in search_result if valid_item(i)]
 
@@ -186,7 +188,6 @@ def search_on_google_scholar(
 
     while len(result) < n:
         # FIXME: 今のままだとそもそも検索結果が全体で n 件以下の場合に無限ループになってしまう
-        logger.info(f"Looking for `{query}` on Google Scholar, offset: {start}...")
         result += fetch(start)
         start += 10
 
@@ -257,6 +258,7 @@ Summry: {summary}
 
 @memory.cache
 def fetch_google_scholar(query: str, start: int) -> dict:
+    logger.info(f"Looking for `{query}` on Google Scholar, offset: {start}...")
     serpapi = SerpAPIWrapper(params={
         "engine": "google_scholar",
         "gl": "us",
