@@ -1,4 +1,6 @@
+import functools
 import logging
+import tiktoken
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import SpacyTextSplitter
 from langchain.vectorstores import FAISS
@@ -21,6 +23,14 @@ def create_papers_vectorstor(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
     )
+    enc = tiktoken.encoding_for_model(tiktoken_encoder_model_name)
+
+    def format_text(text):
+        return functools.reduce(
+            lambda text, special_token: text.replace(special_token, ""),
+            list(enc.special_tokens_set),
+            text
+        ).replace("\n", " ")
 
     logger.info(
         f"Creating vector store,"
@@ -29,7 +39,7 @@ def create_papers_vectorstor(
     )
 
     docs = splitter.create_documents(
-        [p.text.replace("\n", " ") for p in tqdm(papers)],
+        [format_text(p.text) for p in tqdm(papers)],
         metadatas=[
             {
                 'google_scholar_result_id': p.google_scholar_result_id,
